@@ -1,0 +1,46 @@
+1.)  filter_concat Function
+write function filter_concat that takes a predicate and a list of lists, 
+and returns the result of concatenating lists that pass the predicate
+
+filter_concat (\l -> length l < 3)
+    [[1,2,3],[4],[5,6],[],[7,8,9,10]]
+[4,5,6]
+filter_concat (even . length)
+    [[1,2,3],[4],[5,6],[],[7,8,9,10]]
+[5,6,7,8,9,10]
+
+-what's the type of filter_concat?
+-can you avoid recursion in your definition?
+(feel free to use functions from the Prelude)
+
+-Type:
+filter_concat :: ([a] -> Bool) -> [[a]] -> [a]
+
+-Yes Ex:
+filter_concat pred = concat . filter pred
+
+
+
+2.) take_while Function
+write function take_while that keeps taking elements from the beginning of the given list, 
+as long as these elements satisfy the predicate
+
+take_while (/= ',') "Hello, world"
+"Hello"
+take_while (even . length)
+    [[1,2,3],[4],[5,6],[],[7,8,9,10]]
+[]
+
+-what's the type of take_while?
+-rewrite (\l -> length l < 3) without using lambda expressions
+what's the type of your answer?
+hint: use composition
+
+-Type:
+take_while :: (a -> Bool) -> [a] -> [a]
+
+
+-Rewrite (\l -> length l < 3) without using lambda expressions:
+(\l -> length l < 3) == ((< 3) . length)
+Type:
+(< 3) . length :: [a] -> Bool
